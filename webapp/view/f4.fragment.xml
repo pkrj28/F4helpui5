@@ -1,6 +1,7 @@
-<core:FragmentDefinition
+<core:FragmentDefinition xmlns:valuehelpdialog="sap.ui.comp.valuehelpdialog"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
+
 	<Dialog title="Select any one entry" contentWidth="40%">
 		<content>
 			<Table id="idtable" items="{/Travel}" >
