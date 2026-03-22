@@ -7,7 +7,7 @@
 emptySpanM="5">
 	<f:content>
     <Label text="Travel Id" > </Label>    
-    <Input id="f4id" showValueHelp="true" valueHelpRequest="Onf4">
+    <Input id="travelid" showValueHelp="true" valueHelpRequest="Onf4">
 
     </Input>
     	</f:content>

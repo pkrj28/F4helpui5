@@ -7,21 +7,22 @@ sap.ui.define([
         onInit() {
         },
         Onf4: function() {
-            // sap.ui.xmlfragment("ID for fragment", "path for fragment","controller for fragment" );
-           this.dialog = sap.ui.xmlfragment(this.getView().getId(), "com.f4help.projectf4.view.f4",this);
-          // this is for binding for data 
-           this.getView().addDependent(this.dialog);
+            if(this.dialog == undefined) {    
+                  this.dialog = sap.ui.xmlfragment(this.getView().getId(), "com.f4help.projectf4.view.f4",this);
+                  this.getView().addDependent(this.dialog);
+            }
             this.dialog.open();  
         },
         Onclose: function() {
         this.dialog.close();
 
-        }   
+        },
+        onrow: function(oEvent) {
+   
+        var tid = oEvent.getSource().getBindingContext().getProperty("TravelId");
+       this.byId("travelid").setValue(tid);
+           this.dialog.close();
 
-
-
-
-
-
+        }  
     });
 });

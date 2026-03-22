@@ -108,7 +108,7 @@
           "bundleName": "com.f4help.projectf4.i18n.i18n"
         }
       },
-      "": {
+      "oModel": {
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
@@ -118,7 +118,7 @@
         "preload": true,
         "settings": {}
       },
-      "oModel": {
+      "": {
         "dataSource": "ZPRIYANK_SRV",
         "preload": true,
         "settings": {}
