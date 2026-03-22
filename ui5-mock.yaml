@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "4.0"
+metadata:
+  name: com.f4help.projectf4
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertErrors: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - url: https://87073b08-232b-42f9-ae7c-bc59cf2ae025.abap.us10.hana.ondemand.com/
+            destination: abap-cloud-abap-8cb019a1trial-dev
+            path: /sap
+          - url: http://s4h2023.demo23.com:8022
+            client: '800'
+            destination: S4
+            path: /sap/opu/odata/sap/ZSERVICE_BINDING/
+          - url: https://87073b08-232b-42f9-ae7c-bc59cf2ae025.abap.us10.hana.ondemand.com/
+            destination: abap-cloud-abap-8cb019a1trial-dev
+            path: /sap/opu/odata/sap/ZPRIYANK_SRV/
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        flp:
+          theme: sap_horizon
+    - name: sap-fe-mockserver
+      beforeMiddleware: csp
+      configuration:
+        mountPath: /
+        services:
+          - urlPath: /sap/opu/odata/sap/ZPJ_SRV
+            metadataPath: ./webapp/localService/mainService/metadata.xml
+            mockdataPath: ./webapp/localService/mainService/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZSERVICE_BINDING
+            metadataPath: ./webapp/localService/ZSERVICE_BINDING/metadata.xml
+            mockdataPath: ./webapp/localService/ZSERVICE_BINDING/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/sap/ZPRIYANK_SRV
+            metadataPath: ./webapp/localService/ZPRIYANK_SRV/metadata.xml
+            mockdataPath: ./webapp/localService/ZPRIYANK_SRV/data
+            generateMockData: true
+        annotations:
+          - localPath: ./webapp/localService/mainService/ZPJ_SRV_VAN.xml
+            urlPath: /sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZPJ_SRV_VAN',Version='0001')/$value/
+          - localPath: ./webapp/localService/ZSERVICE_BINDING/ZSERVICE_BINDING_VAN.xml
+            urlPath: /sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZSERVICE_BINDING_VAN',Version='0001')/$value/
+          - localPath: ./webapp/localService/ZPRIYANK_SRV/ZPRIYANK_SRV_VAN.xml
+            urlPath: /sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZPRIYANK_SRV_VAN',Version='0001')/$value/

@@ -1,0 +1,169 @@
+{
+  "_version": "1.83.0",
+  "sap.app": {
+    "id": "com.f4help.projectf4",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.21.0",
+      "toolsId": "9663e4e2-9c7f-411a-9d14-4f771f963ba3"
+    },
+    "dataSources": {
+      "ZPJ_SRV_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZPJ_SRV_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZPJ_SRV_VAN.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZPJ_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZPJ_SRV_VAN"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZSERVICE_BINDING_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZSERVICE_BINDING_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/ZSERVICE_BINDING/ZSERVICE_BINDING_VAN.xml"
+        }
+      },
+      "ZSERVICE_BINDING": {
+        "uri": "/sap/opu/odata/sap/ZSERVICE_BINDING/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZSERVICE_BINDING_VAN"
+          ],
+          "localUri": "localService/ZSERVICE_BINDING/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "ZPRIYANK_SRV_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZPRIYANK_SRV_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/ZPRIYANK_SRV/ZPRIYANK_SRV_VAN.xml"
+        }
+      },
+      "ZPRIYANK_SRV": {
+        "uri": "/sap/opu/odata/sap/ZPRIYANK_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZPRIYANK_SRV_VAN"
+          ],
+          "localUri": "localService/ZPRIYANK_SRV/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.146.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.f4help.projectf4.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      },
+      "ZSERVICE_BINDING": {
+        "dataSource": "ZSERVICE_BINDING",
+        "preload": true,
+        "settings": {}
+      },
+      "oModel": {
+        "dataSource": "ZPRIYANK_SRV",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.f4help.projectf4.view",
+        "async": true,
+        "viewPath": "com.f4help.projectf4.view"
+      },
+      "routes": [
+        {
+          "name": "RouteView1",
+          "pattern": ":?query:",
+          "target": [
+            "TargetView1"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetView1": {
+          "id": "View1",
+          "name": "View1"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.f4help.projectf4.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

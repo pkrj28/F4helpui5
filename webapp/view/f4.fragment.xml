@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+<Dialog title="Select any one entry" contentWidth="40%">
+<content>
+<Table items="{oModel>/Travel}" >
+				<columns>
+					<Column>
+						<Text text="Travel Id"></Text>
+					</Column>
+					<Column>
+						<Text text="Agency ID"></Text>
+					</Column>					
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{oModel>TravelId}"/>
+							<Text text="{oModel>AgencyId}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+</content>
+<endButton>
+<Button text="Close" type="Reject" press="Onclose"></Button>
+</endButton>
+</Dialog>
+
+</core:FragmentDefinition>

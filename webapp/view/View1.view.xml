@@ -1,0 +1,16 @@
+<mvc:View controllerName="com.f4help.projectf4.controller.View1"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+    <Page id="page" title="{i18n>title}">
+    <f:SimpleForm title="Multivalue UI element" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" emptySpanL="5" 
+emptySpanM="5">
+	<f:content>
+    <Label text="Travel Id" > </Label>    
+    <Input id="f4id" showValueHelp="true" valueHelpRequest="Onf4">
+
+    </Input>
+    	</f:content>
+</f:SimpleForm>
+    </Page>
+</mvc:View>
